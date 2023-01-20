@@ -1,3 +1,1 @@
-export default function Update() {
-    <></>
-}
+export default function UpdateArticle() {}

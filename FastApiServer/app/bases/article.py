@@ -7,22 +7,22 @@ from app.schemas.article import ArticleDTO
 class ArticleBase(metaclass=ABCMeta):
 
     @abstractmethod
-    def add_user(self, request_user: ArticleDTO) -> str: pass
+    def add_article(self, request_article: ArticleDTO): pass
 
     @abstractmethod
-    def login(self, request_user: ArticleDTO) -> Article: pass
+    def update_article(self, request_article: ArticleDTO): pass
 
     @abstractmethod
-    def update_user(self, request_user: ArticleDTO) -> str: pass
+    def delete_article(self, request_article: ArticleDTO): pass
 
     @abstractmethod
-    def delete_user(self, request_user: ArticleDTO) -> str: pass
+    def find_all_articles(self, request_article: ArticleDTO) -> List[ArticleDTO]: pass
 
     @abstractmethod
-    def find_all_users(self, page: int) -> List[Article]: pass
+    def find_articles_by_userid(self, request_article: ArticleDTO) -> List[ArticleDTO]: pass
 
     @abstractmethod
-    def find_user_by_id(self, request_user: ArticleDTO) -> ArticleDTO: pass
+    def find_articles_by_title(self, request_article: ArticleDTO) -> List[ArticleDTO]: pass
 
     @abstractmethod
-    def find_userid_by_email(self, request_user: ArticleDTO) -> str: pass
+    def find_article_by_seq(self, request_article: ArticleDTO) -> ArticleDTO: pass

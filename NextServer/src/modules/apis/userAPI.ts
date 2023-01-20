@@ -6,18 +6,16 @@ import { author, client } from "@/src/modules/controllers"
 
 export const user = {
     async join(payload: User){
-            const url = `${context.server}/users/join`
-            alert(`URL(api) is ${url}`)
             try{
                 const response : AxiosResponse<any, User[]> =
                 await axios.post(`http://127.0.0.1:8000/users/register`, payload, {headers: {
                     "Content-Type" : "application/json",
                     Authorization: "JWT fefege...",
                 }})
-                if(response.data === "failure"){
-                    alert(' 결과: API 내부 join 실패  ')
-                }else{
+                if(response.data === "success"){
                     alert(' 결과: API 내부 join 성공  '+ JSON.stringify(response.data))
+                }else{
+                    alert(` 결과: ${response.data.msg}  `)
                 }
                 return response
             }catch(err){
@@ -28,22 +26,30 @@ export const user = {
     async login(payload: User){
         try{
             const response : AxiosResponse<any, User[]> =
-            await author.post('/users/login', payload)
-            alert(` 서버에서 리턴받은 값: ${JSON.stringify(response.data.email)}`)
-            localStorage.setItem("email", response.data.email)
-            //return response.data
+            await author.post('http://localhost:8000/users/login', payload)
+            // alert(` 서버에서 리턴받은 값: ${JSON.stringify(response.data.email)}`)
+            alert(`4 API payload is ${JSON.stringify(response.data)}`)
+            localStorage.clear()
+            const data = response.data
+            localStorage.setItem("email", data.email)
+            alert(`API 스토리지에 저장된 토큰 ${localStorage.getItem("session")}`)
+            return data.msg
         }catch(err){
             return err;
         }
     },
-    async logout(){
+    
+    async logout(payload: User){
         try{
-            await client.post('/users/logout')
+            // await client.post('/users/logout')
+            const response : AxiosResponse = await client.post('/users/logout', payload)
+            return response.data
         } catch(err){
             console.log(err)
             return err;
         }
     },
+    
     async userInfo(){
         try{
             const response : AxiosResponse = await client.get(`/users/join`)

@@ -10,3 +10,5 @@ fastapi-sqlalchemy
 pyjwt
 shortuuid
 passlib
+fastapi_pagination
+faker
