@@ -38,6 +38,7 @@ class UserCrud(UserBase, ABC):
             verified = verify_password(plain_password=request_user.password,
                                        hashed_password=db_user.password)
             if verified:
+                print("확인")
                 new_token = generate_token(request_user.email)
                 request_user.token = new_token
                 self.update_token(db_user, new_token)
@@ -120,3 +121,4 @@ class UserCrud(UserBase, ABC):
 
     def count_all_users(self) -> int:
         return self.db.query(User).count()
+

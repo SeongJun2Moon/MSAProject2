@@ -19,6 +19,7 @@ async def register_user(dto: UserDTO, db: Session = Depends(get_db)):
 
 @router.post("/login", status_code=200)
 async def login_user(dto: UserDTO, db: Session = Depends(get_db)):
+    print("hi")
     return JSONResponse(status_code=200,
                         content=dict(
                             msg=UserCrud(db).login_user(request_user=dto)))

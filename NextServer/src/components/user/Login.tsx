@@ -23,8 +23,8 @@ export default function Login({onChange, onSubmit}: Props){
                     </thead>
                     <tbody>
                         <Row>
-                            <Cell><label htmlFor="user_email">이메일(ID)</label></Cell>
-                            <Cell><Input type="text"  id="user_email" name="user_email" onChange={onChange}  required minLength= {10} maxLength={20}/></Cell>
+                            <Cell><label htmlFor="email">이메일(ID)</label></Cell>
+                            <Cell><Input type="text"  id="email" name="email" onChange={onChange}  required minLength= {10} maxLength={20}/></Cell>
                         </Row>
                         <Row>
                             <Cell><label htmlFor="password">비밀번호</label></Cell>
