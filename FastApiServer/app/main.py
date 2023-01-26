@@ -16,6 +16,7 @@ from app.routers.article import router as article_router
 from app.test.user import router as test_router
 from app.admin.pagination import router as pagination_router
 from fastapi.middleware.cors import CORSMiddleware
+from mangum import Mangum
 
 API_TOKEN = "SECRET_API_TOKEN"
 api_key_header = APIKeyHeader(name="Token")
@@ -77,3 +78,4 @@ async def say_hello(name: str):
 @app.get("/no-match-token")
 async def no_match_token():
     return {"message": f"토큰 유효시간이 지났습니다."}
+
